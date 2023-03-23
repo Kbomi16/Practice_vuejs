@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn @click="helloWorld()">안녕하세요</v-btn>
+    <v-btn @click="helloWorld()">안녕하세요. 김보미입니다.</v-btn>
 
     <!-- <div v-if="onoff"></div> -->
 
