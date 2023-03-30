@@ -43,6 +43,17 @@
         }
 
         //TODO : 서버에 데이터 전송
+        this.$axios.post("/api/board/write", this.board)
+        .then(result => {
+          if(result.data.result == "ok") {
+            this.$router.replace("/board")
+          } else {
+            if(result.data.message) {
+              window.alert(result.data.message)
+            }
+          }
+        })
+
         this.$router.replace("/board")
       }
     }

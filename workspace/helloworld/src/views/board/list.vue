@@ -31,20 +31,20 @@
 export default {
     data() {
         return {
-            boardList:[
-                {boardNo: 1, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 2, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 3, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 4, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 5, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 6, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 7, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 8, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 9, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-            ]
+            boardList:[]
         }
     },
+    mounted() {
+      this.getBoardList()
+    },
     methods: {
+      getBoardList() {
+        this.$axios.get("/api/board/list")
+        .then(result => {
+          console.log(result.data)
+          this.boardList = result.data
+        })
+      },
       moveWrite() {
         this.$router.push("/board/write")
       },
