@@ -8,16 +8,72 @@ body {
   font-family: 'Muli', sans-serif;
   margin: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   overflow: hidden;
+  background-image: url(https://images.unsplash.com/photo-1601297183305-6df142704ea2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  margin: 0;
-  padding: 0;
+}
+
+.card {
+  background-color: #87A8D0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50px;
+  padding: 30px;
+  left: 0;
+  margin-right: 10px;
+}
+
+.card #weather-info {
+  background-color: aliceblue;
+  border-radius: 20px;
+  padding: 0 auto;
+  width: 100%;
+  font-size: 20px;
+}
+
+.card h1 {
+  font-size: 60px;
+}
+
+.card .search label {
+  font-size: 30px;
+  transition: width .3s ease;
+}
+
+.card input {
+  font-size: 30px;
+  border-radius: 10px;
+  outline: none;
+  border: #87A8D0;
+}
+
+.card #search-btn {
+  color: white;
+  border-radius: 10px;
+  font-size:  30px;
+  background-color: #B9CEEB;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.possible {
+  background-color: #B9CEEB;
+  border-radius: 30px;
+  padding: 10px;
+  right: 0;
+   
+}
+.possible h3 {
+  margin-top: 30px;
+}
+.possible li {
+  list-style-type: none;
+  margin-bottom: 5px;
 }

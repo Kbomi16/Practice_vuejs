@@ -34,3 +34,4 @@ searchBtn.addEventListener('click', () => {
   const cityName = cityInput.value;
   showWeather(cityName, apiKey);
 });
+
