@@ -25,7 +25,7 @@ router.get("/board/list", function(req,res) {
   res.json(list)
 })
 
-router.post("/board/write", function (req, res) {
+router.post("/board/write", async function (req, res) {
   console.log(req.body)
   var title = req.body.title
   if (title.indexOf("바보") > -1) {
@@ -37,8 +37,36 @@ router.post("/board/write", function (req, res) {
     return
   }
   // 디비에 저장
+  // board.create(req.body).then(result => {
+  //   console.log(result.dataValues)
+  // })
+  // res.json({
+  //   result: "ok"
+  // })
+  // console.log("저장 후")
+
+  // await은 aysnc안에 있어야 함
+  var result = await Board.create(req.body)
+
   res.json({
-    result: "ok"
+    result: "ok",
+    item: result
+  })
+  console.log("저장 후")
+
+})
+
+router.post("/board/item", async function (req, res) {
+  var boardNo = req.body.boardNo
+  var boardItem = await Board.findOne({
+    where: {
+      boardNo: boardNo
+    }
+  })
+  res.json({
+    result: "ok",
+    board: boardItem
   })
 })
+
 module.exports = router

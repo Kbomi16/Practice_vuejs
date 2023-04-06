@@ -9,6 +9,18 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Sequelize
+const { Sequelize } = require('sequelize');
+
+const sequelize = new Sequelize('board', 'root', '1234', {
+  host: 'localhost',
+  dialect: "mysql",
+  logging: false
+});
+
+var modelInit = require("./model.js")
+modelInit(Sequelize, sequelize)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -37,5 +49,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

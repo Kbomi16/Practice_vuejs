@@ -167,3 +167,19 @@ router.post("/board/write", function (req, res) {
   });
 });
 ```
+
+### 6주차
+
+workbench에서 board DB 만듦<br>
+
+app.js에서 DB 연결
+
+```js
+// Sequelize
+const { Sequelize } = require("sequelize");
+
+const sequelize = new Sequelize("board", "root", "1234", {
+  host: "localhost",
+  dialect: "mysql",
+});
+```

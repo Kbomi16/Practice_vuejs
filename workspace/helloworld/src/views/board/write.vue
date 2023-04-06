@@ -46,7 +46,7 @@
         this.$axios.post("/api/board/write", this.board)
         .then(result => {
           if(result.data.result == "ok") {
-            this.$router.replace("/board")
+            this.$router.replace("/board/item/" + result.data.item.boardNo)
           } else {
             if(result.data.message) {
               window.alert(result.data.message)
