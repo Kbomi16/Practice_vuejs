@@ -183,3 +183,11 @@ const sequelize = new Sequelize("board", "root", "1234", {
   dialect: "mysql",
 });
 ```
+
+### 7주차
+
+momnet.js 설치<br>
+npm install moment --save
+
+node-jyh-pager
+npm install node-jyh-pager

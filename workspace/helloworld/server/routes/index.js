@@ -1,5 +1,11 @@
 var express = require('express');
 var router = express.Router();
+const Service = require("./service");
+const Pager = require("node-jyh-pager");
+let pager = new Pager({
+  itemPerPage: 10,
+  pageCount: 10
+})
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,19 +16,25 @@ router.get("/helloworld", function(req, res) {
   res.write("helloworld")
   res.end()
 })
-router.get("/board/list", function(req,res) {
-  var list = [
-    {boardNo: 1, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-              {boardNo: 2, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 3, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 4, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 5, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 6, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 7, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 8, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"},
-                {boardNo: 9, title: "제목1", writer: "김보미", viewCount: 1, writeDate: "2023-03-23"}
-  ]
-  res.json(list)
+router.post("/board/list", async function(req,res) {
+  var page = req.body.page
+  
+
+  var list = await Board.findAll({
+    offset: (page-1) * 10,
+    limit: 10,
+    order: [["writeDate", "DESC"], ["viewCount", "ASC"]]
+  })
+  var totalCount = await Board.count()
+  var pagination = pager.getBottomNav(page, totalCount)
+
+
+
+
+  res.json({
+    list: list,
+    pagination: pagination
+  })
 })
 
 router.post("/board/write", async function (req, res) {
