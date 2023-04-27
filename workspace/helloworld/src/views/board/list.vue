@@ -24,6 +24,7 @@
         @update:modelValue="getBoardList()" 
         v-if="pagination" 
         :length="pagination.totalPage"></v-pagination> -->
+        
           <pagination v-if="pagination" @movePage="movePage" :data="pagination"></pagination>
 
         <div class="text-right">

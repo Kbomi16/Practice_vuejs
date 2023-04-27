@@ -1,5 +1,6 @@
 <template>
   <v-layout>
+    <v-spacer></v-spacer>
     <v-btn flat v-if="data.isPrev" @click="movePage(data.startNav - 1)">
       <v-icon>
         mdi-arrow-left
@@ -27,6 +28,11 @@
     },
     mounted() {
       this.init()
+    },
+    watch: {
+      data() {
+        this.init()
+      }
     },
     methods: {
       getColor(page) {

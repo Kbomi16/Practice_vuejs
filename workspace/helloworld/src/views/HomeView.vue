@@ -1,14 +1,15 @@
 <template>
   <div>
-    <v-btn @click="helloWorld()">안녕하세요. 김보미입니다.</v-btn>
+    <v-container>
+      <v-text-field v-model="user.id" label="아이디"></v-text-field>
+      <v-text-field v-model="user.password" label="비밀번호"></v-text-field>
+    </v-container>
 
-    <!-- <div v-if="onoff"></div> -->
-
-    <!-- 반복문 for -->
-    <!-- old클래스는 학생의 나이가 40이상만 출력함. -->
-    <div v-for="student in studentFilter()" class="student" :class="{old:student.age>=40}">
-      {{ student.name }}
+    <div class="text-center">
+      <v-btn class="mr-2">로그인</v-btn>
+      <v-btn @click="moveJoin">회원가입</v-btn>
     </div>
+
   </div>
 </template>
 
@@ -20,49 +21,20 @@ export default defineComponent({
   // 변수 선언
   data() {
     return {
-      onoff: true,
-      students: [
-        {name : "김보미", age:20},
-        {name : "장세림", age:30},
-        {name : "윤다영", age:40},
-        {name : "임효진", age:50}
-      ]
+      user: {
+        id: '',
+        password: ''
+      }
     }
   },
 
   methods:{
-    helloWorld() {
-      // this.students.push("학생" + Math.random())
-      // this.onoff = !this.onoff
-      this.$router.push("/helloworld")
-    },
-    studentFilter() {
-      var returnArr=[]
-      if(this.onoff == true) {
-        this.students.forEach(student => {
-          returnArr.push(student)
-        })
-      } else {
-        // 나이가 40미만인 학생만 리턴
-        this.students.forEach(student => {
-          if(student.age < 40) {
-            returnArr.push(student)
-          }
-        })
-      } 
-      return returnArr;
+    moveJoin() {
+      this.$router.push("/join")
     }
   }
 });
 </script>
 
 <style>
-  .student {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  .student.old {
-    color: red;
-  }
 </style>

@@ -25,6 +25,23 @@ function init(Sequelize, connection) {
     }
   })
 
+  global.User = connection.define("user", {
+    id: {
+      type: Sequelize.STRING,
+      primaryKey: true
+    },
+    password: {
+      type: Sequelize.STRING,
+    },
+    name: {
+      type: Sequelize.STRING,
+    },
+    joinDate: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW
+    }
+  })
+
   connection.sync({
     // force: 실행 시킬 때마다 다 삭제함 
     alter: true

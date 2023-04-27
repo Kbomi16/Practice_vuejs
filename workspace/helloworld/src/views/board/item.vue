@@ -4,6 +4,12 @@
     <div class="writer">{{ board.writer }}</div>
     <div class="view-count">{{ board.viewCount }}</div>
     <div class="body" v-html="nl2br(board.body)"></div>
+
+    <div class="text-center mt-6">
+      <v-btn color="primary" @click="moveModify()">수정</v-btn>
+      <v-btn color="red" @click="remove()">삭제</v-btn>
+    </div>
+
   </v-container>
 </template>
 
@@ -25,6 +31,22 @@
       })
     },
     methods: {
+      remove() {
+        if(!confirm("게시물을 삭제하시겠습니까?")) {
+          return
+        }
+
+        this.$axios.post("/api/board/remove", this.board)
+        .then(result => {
+          if(result.data.result == "ok") {
+            this.$router.go(-1)
+          }
+        })
+      },
+      
+      moveModify() {
+        this.$router.push("/board/modify/" + this.board.boardNo)
+      },
       nl2br(input) {
         if (input) {
           return input.replace(/\n/g, "<br/>")

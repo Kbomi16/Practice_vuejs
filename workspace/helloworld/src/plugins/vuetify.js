@@ -13,7 +13,7 @@ export default createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: "#ff0000"
+          primary: "#CC99CC"
         }
       }
     }
