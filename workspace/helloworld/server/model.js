@@ -41,6 +41,14 @@ function init(Sequelize, connection) {
       defaultValue: Sequelize.NOW
     }
   })
+  Board.belongsTo(User, {
+    as: "user",
+    foreignKey: "userId"
+  })
+  User.hasMany(Board, {
+    as: "boards",
+    foreignKey: "userId"
+  })
 
   connection.sync({
     // force: 실행 시킬 때마다 다 삭제함 

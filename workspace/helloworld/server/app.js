@@ -18,6 +18,24 @@ const sequelize = new Sequelize('board', 'root', '1234', {
   logging: false
 });
 
+var session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+var sessionStore = new MySQLStore({
+  host: 'localhost',
+	port: 3306,
+	user: 'root',
+	password: '1234',
+	database: 'board'
+});
+app.use(session({
+	key: 'loginkey',
+	secret: '1234',
+	store: sessionStore,
+	resave: false,
+	saveUninitialized: false
+}));
+
+
 var modelInit = require("./model.js")
 modelInit(Sequelize, sequelize)
 

@@ -186,8 +186,52 @@ const sequelize = new Sequelize("board", "root", "1234", {
 
 ### 7주차
 
+```
 momnet.js 설치<br>
 npm install moment --save
 
 node-jyh-pager
 npm install node-jyh-pager
+```
+
+### 9주차
+
+https://www.npmjs.com/package/express-session
+
+```js
+npm install password-encrypt-util --save
+
+var Password = require("password-encrypt-util")
+var password = new Password("mjc801!")
+password.getHashPassword("123456")
+password.encrptPasswordV2("123456")
+password.decryptPassword(암호)
+
+npm install express-session --save
+```
+
+https://www.npmjs.com/package/express-mysql-session
+
+```js
+
+npm install express-mysql-session --save
+
+// app.js
+var session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+var sesstionStore = new MySQLStore({
+host: 'localhost',
+port: 3306,
+user: 'root',
+password: '1234',
+database: 'board'
+})
+app.use(session({
+	key: 'session_cookie_name',
+	secret: 'session_cookie_secret',
+	store: sessionStore,
+	resave: false,
+	saveUninitialized: false
+}));
+
+```

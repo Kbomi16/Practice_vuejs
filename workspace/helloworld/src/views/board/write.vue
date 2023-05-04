@@ -19,7 +19,6 @@
       return {
         board: {
           title: "",
-          writer: "",
           body: ""
         }
       }
@@ -31,11 +30,7 @@
           this.$refs.title.focus()
           return 
         }
-        if(this.board.writer == "") {
-          alert("작성자를 입력하세요.")
-          this.$refs.writer.focus()
-          return 
-        }
+        
         if(this.board.body == "") {
           alert("내용을 입력하세요.")
           this.$refs.body.focus()

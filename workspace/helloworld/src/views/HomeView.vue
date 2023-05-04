@@ -6,7 +6,7 @@
     </v-container>
 
     <div class="text-center">
-      <v-btn class="mr-2">로그인</v-btn>
+      <v-btn class="mr-2" @click="login">로그인</v-btn>
       <v-btn @click="moveJoin">회원가입</v-btn>
     </div>
 
@@ -31,6 +31,17 @@ export default defineComponent({
   methods:{
     moveJoin() {
       this.$router.push("/join")
+    },
+    login() {
+      this.$axios.post("/api/user/login", this.user)
+      .then(result => {
+        if(result.data.result == "ok") {
+          alert("로그인 성공")
+          this.$router.push("/board")
+        } else {
+          alert(result.data.message)
+        }
+      })
     }
   }
 });
