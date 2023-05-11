@@ -36,6 +36,8 @@ export default defineComponent({
       this.$axios.post("/api/user/login", this.user)
       .then(result => {
         if(result.data.result == "ok") {
+          console.log(result.data)
+          this.$store.commit("setLoginUser", result.data.user)
           alert("로그인 성공")
           this.$router.push("/board")
         } else {

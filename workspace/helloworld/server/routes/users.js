@@ -53,8 +53,29 @@ router.post("/login", async function(req, res) {
   req.session.user = user
 
   res.json ({
-    result : "ok"
+    result : "ok",
+    user: user
   })
 })
 
+router.post("/info", async function(req, res) {
+  if(req.session.user) {// 로그인 될 때
+    res.json({
+      result: "ok",
+      user: req.session.user
+    })
+  } else { //로그이 안 될 때
+    res.json({
+      result: "fail"
+    })
+  }
+})
+
+
+router.post("/logout", async function(req, res) {
+  req.session.destroy()
+  res.json({
+    result: "ok"
+  })
+})
 module.exports = router;

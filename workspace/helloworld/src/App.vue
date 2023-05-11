@@ -1,10 +1,12 @@
 <template>
   <v-app>
     <div class="header">
-      <v-layout>
+      <v-layout align-center>
         <div class="logo">김보미의 게시판</div>
         <v-spacer></v-spacer>
-        <div class="user"></div>
+        <div class="user" v-if="$store.state.loginUser">
+          {{ $store.state.loginUser.name }}
+        </div>
         <div><v-btn flat @click="logout">로그아웃</v-btn></div>
       </v-layout>
     </div>
@@ -22,9 +24,21 @@ export default {
   data: () => ({
     //
   }),
+  mounted() {
+    this.$axios.post("/api/user/info")
+    .then(result => {
+      if(result.data.result == "ok") {
+        this.$store.commit("setLoginUser", result.data.user)
+      }
+    })
+  },
   methods: {
     logout() {
-      this.$router.push("/")
+      this.$axios.post("/api/user/logout")
+      .then(result => {
+        this.$store.commit("logout")
+        this.$router.push("/")
+      })
     }
   }
 }
